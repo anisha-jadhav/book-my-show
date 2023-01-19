@@ -3,8 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      color: {
+      colors: {
         darkBackground: {
+          DEFAULT: "#EDF1FC",
           50: "#EDF1FC",
           100: "#D5DEF8",
           200: "#A5B9F0",
