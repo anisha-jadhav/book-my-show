@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 // Components
 import EntertainmentCardSlider from "../components/Entertainment/EntertainmentCard.Component";
 import HeroCarousel from "../components/HeroCarousel/HeroCarousel.Component";
@@ -10,6 +11,36 @@ const HomePage = () => {
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [premierMovies, setPremierMovies] = useState([]);
   const [onlineStreamEvents, setOnlineStreamEvents] = useState([]);
+
+  useEffect(() => {
+    const requestPopularMovies = async () => {
+      const getPopularMovies = await axios.get("/movie/popular");
+
+      setRecommendedMovies(getPopularMovies.data.results);
+    };
+
+    requestPopularMovies();
+  }, []);
+
+  useEffect(() => {
+    const requestTopRatedMovies = async () => {
+      const getTopRatedMovies = await axios.get("/movie/top_rated");
+
+      setPremierMovies(getTopRatedMovies.data.results);
+    };
+
+    requestTopRatedMovies();
+  }, []);
+
+  useEffect(() => {
+    const requestOnlineStreamingEvents = async () => {
+      const getOnlineStreamingEvents = await axios.get("/movie/upcoming");
+
+      setOnlineStreamEvents(getOnlineStreamingEvents.data.results);
+    };
+
+    requestOnlineStreamingEvents();
+  }, []);
 
   return (
     <>
@@ -25,7 +56,7 @@ const HomePage = () => {
       <div className="container mx-auto px-4 md:px-12 my-8">
         <PosterSlider
           title="Recommended Movies"
-          subject="List of Recommended Movies"
+          subtitle="List of Recommended Movies"
           posters={recommendedMovies}
           isDark={false}
         />
@@ -42,7 +73,7 @@ const HomePage = () => {
           </div>
           <PosterSlider
             title="Premier Movies"
-            subject="Brand new releases every Friday"
+            subtitle="Brand new releases every Friday"
             posters={premierMovies}
             isDark={true}
           />
@@ -52,7 +83,7 @@ const HomePage = () => {
       <div className="container mx-auto px-4 md:px-12 my-8 ">
         <PosterSlider
           title="Online Sttreaming Events"
-          subject=""
+          subtitle=""
           posters={onlineStreamEvents}
           isDark={false}
         />
