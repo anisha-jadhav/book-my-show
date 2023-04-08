@@ -1,5 +1,6 @@
 import React from "react";
 import { BiChevronDown, BiMenu, BiSearch } from "react-icons/bi";
+import {Link} from 'react-router-dom'
 
 function NavSm() {
   return (
@@ -74,6 +75,12 @@ function NavLg() {
           <span className="text-gray-200 text-base flex items-center cursor-pointer hover:text-white ">
             Mumbai <BiChevronDown />
           </span>
+          <Link
+            to={`/plays`}
+            className="text-gray-200 text-base flex items-center cursor-pointer hover:text-white "
+          >
+            Plays
+          </Link>
 
           <button className="bg-red-600 text-white px-2 py-1 text-sm rounded">
             Sign In

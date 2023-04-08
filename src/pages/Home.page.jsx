@@ -12,6 +12,8 @@ const HomePage = () => {
   const [premierMovies, setPremierMovies] = useState([]);
   const [onlineStreamEvents, setOnlineStreamEvents] = useState([]);
 
+  // useEffect called first only when the page is loaded
+  // i.e when page loads it will load all the movies requested bt axios
   useEffect(() => {
     const requestPopularMovies = async () => {
       const getPopularMovies = await axios.get("/movie/popular");
@@ -82,7 +84,7 @@ const HomePage = () => {
 
       <div className="container mx-auto px-4 md:px-12 my-8 ">
         <PosterSlider
-          title="Online Sttreaming Events"
+          title="Online Streaming Events"
           subtitle=""
           posters={onlineStreamEvents}
           isDark={false}

@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import PaymentModel from "../PaymentModel/Payment.Component";
+import { MovieContext } from "../../context/Movie.context";
 
 const MovieInfo = ({ movie }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [price, setPrice] = useState(0);
+  const { price, setIsOpen, isOpen, rentMovie, buyMovie } =
+    useContext(MovieContext);
+
   const genres = movie.genres?.map(({ name }) => name).join(", ");
-  console.log(genres);
+  const languages = movie.spoken_languages
+    ?.map(({ english_name }) => english_name)
+    .join(", ");
 
-  const rentMovie = () => {
-    setIsOpen(true);
-    setPrice(149);
-  };
+  //console.log(genres);
+  //console.log(languages);
 
-  const buyMovie = () => {
-    setIsOpen(true);
-    setPrice(599);
-  };
   return (
     <>
       <PaymentModel setIsOpen={setIsOpen} isOpen={isOpen} price={price} />
@@ -26,7 +24,7 @@ const MovieInfo = ({ movie }) => {
 
         <div className=" flex flex-col gap-2 text-white">
           <h4>4K rating</h4>
-          <h4>English, Hindi, Kannada, Tamil, Telugu</h4>
+          <h4>{languages}</h4>
           <h4>
             {movie.runtime} min | {genres}
           </h4>

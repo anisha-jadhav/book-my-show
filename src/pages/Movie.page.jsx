@@ -38,9 +38,7 @@ const MoviePage = () => {
 
   useEffect(() => {
     const requestRecommendedMovies = async () => {
-      const getRecommendedMovies = await axios.get(
-        `/movie/${id}/recommendations`
-      );
+      const getRecommendedMovies = await axios.get(`/movie/${id}/recommendations`);
       setRecommendedMovies(getRecommendedMovies.data.results);
     };
 

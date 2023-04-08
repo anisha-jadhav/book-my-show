@@ -1,5 +1,10 @@
 import React from "react";
 
+// what does this do ?
+
+// when we click next of prev , it will take all the properties of current slider
+// and apply same class style to the scrolled slide
+
 export function NextArrow(props) {
   return (
     <>
